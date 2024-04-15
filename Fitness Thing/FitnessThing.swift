@@ -10,9 +10,13 @@ import SwiftData
 
 @main
 struct FitnessThing: App {
+    @State var foodManager = FoodManager()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            MealTemplate.self
+            FoodDay.self,
+            MealTemplate.self,
+            IngredientTemplate.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
@@ -26,7 +30,8 @@ struct FitnessThing: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(foodManager)
+                .modelContainer(sharedModelContainer)
         }
-        .modelContainer(sharedModelContainer)
     }
 }

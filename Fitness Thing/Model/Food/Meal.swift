@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct Meal: Codable {
+struct Meal: Codable, Identifiable {
     var name: String
     var servingSize: Double
     var ingredients: [Ingredient]
     
+    var id: UUID = UUID()
     var portionSize: Double
 }
 
@@ -68,6 +69,22 @@ extension Meal {
 }
 
 extension Meal {
-    static let standard = Meal(name: "Example Meal", servingSize: 100,
-                               ingredients: [Ingredient.standard], portionSize: 400)
+    var percentProtein: Double {
+        (totalProtein * 4) / totalCalories
+    }
+    
+    var percentFat: Double {
+        (totalFat * 9) / totalCalories
+    }
+    
+    var percentCarbs: Double {
+        (totalCarbs * 4) / totalCalories
+    }
+}
+
+extension Meal {
+    static let standard = Meal(name: "Example Meal", 
+                               servingSize: 100,
+                               ingredients: [Ingredient.standard], 
+                               portionSize: 200)
 }

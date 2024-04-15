@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct MealsEatenView: View {
-    var mealsEaten : [MealTemplate]
+    var mealsEaten : [Meal]
     var body: some View {
-        Text("\(mealsEaten[0].name)")
+        ForEach(mealsEaten) { meal in
+            MealRowView(meal: meal)
+        }
     }
 }
 
 #Preview {
-    MealsEatenView(mealsEaten: [MealTemplate.standard, MealTemplate.standard])
+    MealsEatenView(mealsEaten: [Meal.standard, Meal.standard])
+        .environment(FoodManager())
 }

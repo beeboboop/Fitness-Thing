@@ -23,11 +23,13 @@
 		4FA93BE42BBE06E200713D8E /* MacroBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BE32BBE06E200713D8E /* MacroBarView.swift */; };
 		4FA93BE62BBE06FF00713D8E /* MacroEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BE52BBE06FF00713D8E /* MacroEnum.swift */; };
 		4FA93BEB2BBF502C00713D8E /* MealsEatenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BEA2BBF502C00713D8E /* MealsEatenView.swift */; };
-		4FA93BED2BBF506100713D8E /* MealRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BEC2BBF506100713D8E /* MealRow.swift */; };
+		4FA93BED2BBF506100713D8E /* MealRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BEC2BBF506100713D8E /* MealRowView.swift */; };
 		4FA93BEF2BBF56FC00713D8E /* DebugConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA93BEE2BBF56FC00713D8E /* DebugConstants.swift */; };
 		4FAD5C712BBF7B9100B727E3 /* FoodDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD5C702BBF7B9100B727E3 /* FoodDay.swift */; };
 		4FAD5C732BBF7CED00B727E3 /* IngredientTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD5C722BBF7CED00B727E3 /* IngredientTemplate.swift */; };
 		4FAD5C752BBF7CF300B727E3 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD5C742BBF7CF300B727E3 /* Meal.swift */; };
+		4FE71F512BCDBB5B0000E79B /* MealMacrosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE71F502BCDBB5B0000E79B /* MealMacrosView.swift */; };
+		4FE71F532BCDCC400000E79B /* SizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE71F522BCDCC400000E79B /* SizeCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,11 +50,13 @@
 		4FA93BE32BBE06E200713D8E /* MacroBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroBarView.swift; sourceTree = "<group>"; };
 		4FA93BE52BBE06FF00713D8E /* MacroEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroEnum.swift; sourceTree = "<group>"; };
 		4FA93BEA2BBF502C00713D8E /* MealsEatenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsEatenView.swift; sourceTree = "<group>"; };
-		4FA93BEC2BBF506100713D8E /* MealRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRow.swift; sourceTree = "<group>"; };
+		4FA93BEC2BBF506100713D8E /* MealRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRowView.swift; sourceTree = "<group>"; };
 		4FA93BEE2BBF56FC00713D8E /* DebugConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConstants.swift; sourceTree = "<group>"; };
 		4FAD5C702BBF7B9100B727E3 /* FoodDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDay.swift; sourceTree = "<group>"; };
 		4FAD5C722BBF7CED00B727E3 /* IngredientTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTemplate.swift; sourceTree = "<group>"; };
 		4FAD5C742BBF7CF300B727E3 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		4FE71F502BCDBB5B0000E79B /* MealMacrosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealMacrosView.swift; sourceTree = "<group>"; };
+		4FE71F522BCDCC400000E79B /* SizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCalculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				4F21EC9C2BBCCD9B00A860EC /* Food */,
 				4F21EC9D2BBCCDA200A860EC /* Workout */,
 				4F21EC9E2BBCCDA700A860EC /* Profile */,
+				4FE71F522BCDCC400000E79B /* SizeCalculator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,7 +143,8 @@
 				4F21ECA12BBDE67400A860EC /* DateView.swift */,
 				4FA93BE72BBF41C600713D8E /* Overview */,
 				4FA93BEA2BBF502C00713D8E /* MealsEatenView.swift */,
-				4FA93BEC2BBF506100713D8E /* MealRow.swift */,
+				4FA93BEC2BBF506100713D8E /* MealRowView.swift */,
+				4FE71F502BCDBB5B0000E79B /* MealMacrosView.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -256,11 +262,13 @@
 				4FA93BE22BBE02C600713D8E /* CalorieCircleView.swift in Sources */,
 				4F21EC862BBCC9DA00A860EC /* ContentView.swift in Sources */,
 				4FA93BEF2BBF56FC00713D8E /* DebugConstants.swift in Sources */,
-				4FA93BED2BBF506100713D8E /* MealRow.swift in Sources */,
+				4FA93BED2BBF506100713D8E /* MealRowView.swift in Sources */,
 				4F21ECA42BBDEF9000A860EC /* FoodManager.swift in Sources */,
+				4FE71F512BCDBB5B0000E79B /* MealMacrosView.swift in Sources */,
 				4FAD5C732BBF7CED00B727E3 /* IngredientTemplate.swift in Sources */,
 				4FA93BE02BBDF48900713D8E /* DailyOverviewView.swift in Sources */,
 				4F21ECA22BBDE67400A860EC /* DateView.swift in Sources */,
+				4FE71F532BCDCC400000E79B /* SizeCalculator.swift in Sources */,
 				4FAD5C752BBF7CF300B727E3 /* Meal.swift in Sources */,
 				4F21ECA02BBCCECC00A860EC /* Ingredient.swift in Sources */,
 				4FA93BEB2BBF502C00713D8E /* MealsEatenView.swift in Sources */,

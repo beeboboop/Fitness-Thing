@@ -10,9 +10,20 @@ import SwiftData
 
 @Model
 class FoodDay {
+    let date: Date
+    let targetCalories: Double
+    let targetProtein: Double
+    let targetFat: Double
+    let targetCarbs: Double
     var mealsEaten: [Meal]
     
-    init(mealsEaten: [Meal]) {
+    init(date: Date, targetCalories: Double, targetProtein: Double, 
+         targetFat: Double, targetCarbs: Double, mealsEaten: [Meal]) {
+        self.date = date
+        self.targetCalories = targetCalories
+        self.targetProtein = targetProtein
+        self.targetFat = targetFat
+        self.targetCarbs = targetCarbs
         self.mealsEaten = mealsEaten
     }
 }
@@ -41,4 +52,13 @@ extension FoodDay {
             $0 + $1.totalCarbs
         }
     }
+}
+
+extension FoodDay {
+    static let standard = FoodDay(date: Date(), 
+                                  targetCalories: 4000,
+                                  targetProtein: 200,
+                                  targetFat: 200,
+                                  targetCarbs: 200, 
+                                  mealsEaten: [Meal.standard, Meal.standard])
 }

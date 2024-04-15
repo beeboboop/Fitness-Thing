@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct MacroBarView: View {
+    @Environment(FoodManager.self) var foodManager
+    
     let macro : Macro
-    let target : Int
-    let current : Int
+    let target : Double
+    let current : Double
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text(macro.rawValue)
@@ -23,7 +25,7 @@ struct MacroBarView: View {
                     .frame(height: 10)
                     .scaleEffect(x: percentOfTarget, anchor: .leading)
             }
-            Text("\(current)/\(target)g")
+            Text("\(foodManager.formatMacro(current))/\(foodManager.formatMacro(target))g")
                 .font(.caption)
                 
         }
@@ -32,10 +34,11 @@ struct MacroBarView: View {
 
 extension MacroBarView {
     var percentOfTarget : Double {
-        Double(current)/Double(target)
+        current/target
     }
 }
 
 #Preview {
     MacroBarView(macro: .carbs, target: 200, current: 100)
+        .environment(FoodManager())
 }

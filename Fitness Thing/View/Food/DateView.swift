@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct DateView: View {
+    @Environment(FoodManager.self) var foodManager
     let date = Date()
-    let dateFormatter = DateFormatter()
-    
-    init() {
-        self.dateFormatter.dateFormat = "MM/dd/yy"
-    }
     
     var body: some View {
         HStack {
@@ -21,7 +17,7 @@ struct DateView: View {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(.black)
             }
-            Text(dateFormatter.string(from: date))
+            Text(foodManager.formatDate(date))
                 .font(.title)
             Button(action: {}) {
                 Image(systemName: "chevron.right")
@@ -31,10 +27,7 @@ struct DateView: View {
     }
 }
 
-extension DateView {
-    
-}
-
 #Preview {
     DateView()
+        .environment(FoodManager())
 }

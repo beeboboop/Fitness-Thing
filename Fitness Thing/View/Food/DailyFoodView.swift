@@ -9,22 +9,26 @@ import SwiftUI
 import SwiftData
 
 struct DailyFoodView: View {
-    @Query private var mealsEaten : [MealTemplate] = []
+    static func predicate() -> Predicate<FoodDay> {
+      let now = Date()
+      return #Predicate<FoodDay> { $0.date == now }
+    }
+    @Query(filter: predicate()) private var foodDay: [FoodDay] = []
     var body: some View {
         VStack {
             DateView()
-            DailyOverviewView()
+            if let day = foodDay.first {
+                DailyOverviewView(foodDay: day)
+                ScrollView(.vertical) {
+                    MealsEatenView(mealsEaten: day.mealsEaten)
+                }
+            }
         }
     }
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: MealTemplate.self, configurations: config)
-        return DailyFoodView()
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create model container.")
-    }
+    DailyFoodView()
+        .environment(FoodManager())
+        .modelContainer(for: [FoodDay.self, MealTemplate.self, IngredientTemplate.self], inMemory: true)
 }

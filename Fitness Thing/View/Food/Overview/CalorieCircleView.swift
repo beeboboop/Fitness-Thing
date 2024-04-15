@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct CalorieCircleView: View {
-    let target : Int
-    let current : Int
+    @Environment(FoodManager.self) var foodManager
     
+    let foodDay: FoodDay
+    var calorieText: String {
+        foodManager.formatMacro(foodDay.totalCalories) + "/" +
+        foodManager.formatMacro(foodDay.targetCalories)
+    }
     var body: some View {
         ZStack{
             Circle()
@@ -21,9 +25,8 @@ struct CalorieCircleView: View {
                 .rotation(.degrees(120))
                 .trim(from:0, to: percentOfTarget*0.833)
                 .stroke(Color.appPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
-
             VStack {
-                Text("\(current)/\(target)")
+                Text(calorieText)
                 Text("cal")
             }
         }
@@ -31,11 +34,12 @@ struct CalorieCircleView: View {
 }
 
 extension CalorieCircleView {
-    var percentOfTarget : Double {
-        Double(current)/Double(target)
+    var percentOfTarget: Double {
+        foodDay.totalCalories/foodDay.targetCalories
     }
 }
 
 #Preview {
-    CalorieCircleView(target: 4000, current: 2400)
+    CalorieCircleView(foodDay: FoodDay.standard)
+        .environment(FoodManager())
 }

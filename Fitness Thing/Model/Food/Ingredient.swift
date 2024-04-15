@@ -50,7 +50,11 @@ extension Ingredient {
 }
 
 extension Ingredient {
-    static let standard = Ingredient(name: "Example Ingredient", servingSize: 40,
-                                     caloriesPerServing: 400, proteinPerServing: 30,
-                                     fatPerServing: 40, carbsPerServing: 400, portionSize: 40)
+    static let standard = Ingredient(name: "Example Ingredient", 
+                                     servingSize: 40,
+                                     caloriesPerServing: 500, 
+                                     proteinPerServing: 30,
+                                     fatPerServing: 20, 
+                                     carbsPerServing: 40,
+                                     portionSize: 40)
 }
