@@ -28,6 +28,22 @@ class FoodManager {
 }
 
 extension FoodManager {
+    func decrementDate(date: Date) -> Date {
+        let newDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+        return newDate
+    }
+    
+    func incrementDate(date: Date) -> Date {
+        let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+        return newDate
+    }
+    
+//    func areDatesEqual(_ date1: Date, _ date2: Date) -> Bool {
+//        return Calendar.current.isDate(date1, inSameDayAs: date2)
+//    }
+}
+
+extension FoodManager {
     func formatDate(_ date: Date) -> String {
         return dateFormatter.string(from: date)
     }

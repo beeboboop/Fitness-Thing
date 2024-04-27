@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) private var context
 
     var body: some View {
         TabView {
@@ -35,5 +35,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(FoodManager())
+        .modelContainer(for: [FoodDay.self, MealTemplate.self, IngredientTemplate.self], inMemory: true)
 }
 

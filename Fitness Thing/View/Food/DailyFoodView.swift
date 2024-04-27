@@ -9,20 +9,52 @@ import SwiftUI
 import SwiftData
 
 struct DailyFoodView: View {
-    static func predicate() -> Predicate<FoodDay> {
-      let now = Date()
-      return #Predicate<FoodDay> { $0.date == now }
+    @Environment(\.modelContext) var context
+    
+    @State private var selectedDate: Date = Date()
+    @State private var isAdding: Bool = false
+    @Query private var foodDays: [FoodDay] = []
+    
+    var foodDay: FoodDay? {
+        foodDays.first(where:) {
+            Calendar.current.isDate($0.date, inSameDayAs: selectedDate)
+        }
     }
-    @Query(filter: predicate()) private var foodDay: [FoodDay] = []
+    
     var body: some View {
         VStack {
-            DateView()
-            if let day = foodDay.first {
+            HStack {
+                PlusButton(action: {})
+                    .frame(width: 32, height: 32)
+                    .padding(.leading)
+                    .hidden()
+                Spacer()
+                DateView(selectedDate: $selectedDate)
+                Spacer()
+                PlusButton(action: {isAdding = true})
+                    .frame(width: 32, height: 32)
+                    .padding(.trailing)
+            }
+            
+            if let day = foodDay {
                 DailyOverviewView(foodDay: day)
                 ScrollView(.vertical) {
                     MealsEatenView(mealsEaten: day.mealsEaten)
                 }
             }
+        }
+        .onAppear() {
+            if foodDay == nil {
+                context.insert(FoodDay(date: selectedDate, targetCalories: DebugConstants.targetCal, targetProtein: DebugConstants.targetProtein, targetFat: DebugConstants.targetFat, targetCarbs: DebugConstants.targetCarbs, mealsEaten: []))
+            }
+        }
+        .onChange(of: selectedDate) {
+            if foodDay == nil {
+                context.insert(FoodDay(date: selectedDate, targetCalories: DebugConstants.targetCal, targetProtein: DebugConstants.targetProtein, targetFat: DebugConstants.targetFat, targetCarbs: DebugConstants.targetCarbs, mealsEaten: [Meal.standard]))
+            }
+        }
+        .sheet(isPresented: $isAdding) {
+            AddItemSheet()
         }
     }
 }

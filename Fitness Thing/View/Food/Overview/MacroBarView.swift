@@ -34,7 +34,8 @@ struct MacroBarView: View {
 
 extension MacroBarView {
     var percentOfTarget : Double {
-        current/target
+        let percent = current/target
+        return percent > 1 ? 1 : percent
     }
 }
 
