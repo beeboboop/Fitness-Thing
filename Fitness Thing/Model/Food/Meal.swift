@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Meal: Codable, Identifiable {
+struct Meal: Codable, Identifiable, FoodItem {
     var name: String
     var servingSize: Double
     var ingredients: [Ingredient]

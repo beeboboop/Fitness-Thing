@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddItemSheet: View {
+    @Environment(\.modelContext) var context
+    
     @State private var isAdding: Bool = false
+    @Query private var mealTemplates: [MealTemplate] = []
+    
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            PlusButton(action: {isAdding = true})
+            List {
+                ForEach(mealTemplates) {mealTemplate in
+                }
+            }
         }
         .sheet(isPresented: $isAdding) {
             AddItemSheet()
@@ -22,4 +29,5 @@ struct AddItemSheet: View {
 
 #Preview {
     AddItemSheet()
+        .modelContainer(for: [FoodDay.self, MealTemplate.self, IngredientTemplate.self], inMemory: true)
 }

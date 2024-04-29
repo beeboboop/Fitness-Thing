@@ -17,7 +17,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Food", systemImage: "fork.knife")
                 }
-            MealRowView(meal: Meal.standard)
+            Circle()
                 .tabItem {
                     Label("Test", systemImage: "circle")
                 }

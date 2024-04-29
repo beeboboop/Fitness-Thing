@@ -1,5 +1,5 @@
 //
-//  MealMacrosView.swift
+//  MealMacros.swift
 //  Fitness Thing
 //
 //  Created by Elliott Salvatori on 4/15/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MealMacrosView: View {
+struct MealMacros: View {
     let meal: Meal
     
     var body: some View {
@@ -75,6 +75,6 @@ struct MealMacroBar: View {
 }
 
 #Preview {
-    MealMacrosView(meal: Meal.standard)
+    MealMacros(meal: Meal.standard)
         .environment(FoodManager())
 }

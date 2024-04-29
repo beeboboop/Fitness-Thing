@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class MealTemplate {
+class MealTemplate: FoodItem {
     var name: String
     var servingSize: Double
     var ingredients: [Ingredient]
@@ -26,6 +26,54 @@ extension MealTemplate {
         ingredients.reduce(0) {
             $0 + $1.totalCalories
         }
+    }
+    
+    var proteinPerServing: Double {
+        ingredients.reduce(0) {
+            $0 + $1.totalProtein
+        }
+    }
+    
+    var fatPerServing: Double {
+        ingredients.reduce(0) {
+            $0 + $1.totalFat
+        }
+    }
+
+    var carbsPerServing: Double {
+        ingredients.reduce(0) {
+            $0 + $1.totalCarbs
+        }
+    }
+}
+
+extension MealTemplate {
+    var totalCalories: Double {
+        caloriesPerServing
+    }
+    
+    var totalProtein: Double {
+        proteinPerServing
+    }
+    
+    var totalFat: Double {
+        fatPerServing
+    }
+    
+    var totalCarbs: Double {
+        carbsPerServing
+    }
+    
+    var percentProtein: Double {
+        (totalProtein * 4) / totalCalories
+    }
+    
+    var percentFat: Double {
+        (totalFat * 9) / totalCalories
+    }
+    
+    var percentCarbs: Double {
+        (totalCarbs * 4) / totalCalories
     }
 }
 

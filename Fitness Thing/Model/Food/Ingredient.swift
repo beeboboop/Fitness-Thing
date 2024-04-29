@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ingredient: Codable {
+struct Ingredient: Codable, Identifiable, FoodItem {
     var name: String
     var servingSize: Double
     var caloriesPerServing: Double
@@ -15,6 +15,7 @@ struct Ingredient: Codable {
     var fatPerServing: Double
     var carbsPerServing: Double
     
+    var id: UUID = UUID()
     var portionSize: Double
 }
 
@@ -46,6 +47,20 @@ extension Ingredient {
     
     var totalCarbs: Double {
         carbsPerServing * (portionSize/servingSize)
+    }
+}
+
+extension Ingredient {
+    var percentProtein: Double {
+        (totalProtein * 4) / totalCalories
+    }
+    
+    var percentFat: Double {
+        (totalFat * 9) / totalCalories
+    }
+    
+    var percentCarbs: Double {
+        (totalCarbs * 4) / totalCalories
     }
 }
 

@@ -11,7 +11,7 @@ struct MealsEatenView: View {
     var mealsEaten : [Meal]
     var body: some View {
         ForEach(mealsEaten) { meal in
-            MealRowView(meal: meal)
+            //MealRow(meal: meal)
         }
     }
 }
