@@ -1,0 +1,15 @@
+{
+  "originHash" : "b4aadd1890d9f2d1df8b20f4100a858294c4f593c236541a62258659f2cf9d31",
+  "pins" : [
+    {
+      "identity" : "textfieldstepper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/joe-scotto/TextFieldStepper",
+      "state" : {
+        "revision" : "a4d3fb0eea2f7b6af6deec771375eb6ace22ce5b",
+        "version" : "3.2.1"
+      }
+    }
+  ],
+  "version" : 3
+}

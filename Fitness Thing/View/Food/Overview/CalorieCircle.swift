@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CalorieCircleView: View {
+struct CalorieCircle: View {
     @Environment(FoodManager.self) var foodManager
     
     let foodDay: FoodDay
@@ -33,13 +33,13 @@ struct CalorieCircleView: View {
     }
 }
 
-extension CalorieCircleView {
+extension CalorieCircle {
     var percentOfTarget: Double {
         foodDay.totalCalories/foodDay.targetCalories
     }
 }
 
 #Preview {
-    CalorieCircleView(foodDay: FoodDay.standard)
+    CalorieCircle(foodDay: FoodDay.standard)
         .environment(FoodManager())
 }

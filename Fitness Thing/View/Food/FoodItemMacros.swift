@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct MealMacros: View {
-    let meal: Meal
+struct FoodItemMacros<T:FoodItem>: View {
+    let foodItem: T
     
     var body: some View {
         VStack {
             HStack {
                 MacroColumnView(macro: .protein,
-                                grams: meal.totalProtein)
+                                grams: foodItem.totalProtein)
                 MacroColumnView(macro: .fat,
-                                grams: meal.totalFat)
+                                grams: foodItem.totalFat)
                 MacroColumnView(macro: .carbs,
-                                grams: meal.totalCarbs)
+                                grams: foodItem.totalCarbs)
             }
-            MealMacroBar(meal: meal)
+            FoodItemMacroBar(foodItem: foodItem)
         }
     }
 }
@@ -46,35 +46,33 @@ struct MacroColumnView: View {
             Text(foodManager.formatPercent(percentOfTarget) + " dv")
                 .font(.caption)
         }
+        .font(.subheadline)
         .padding(.trailing)
     }
 }
 
-struct MealMacroBar: View {
-    @State private var size: CGSize = .zero
-    let meal: Meal
+struct FoodItemMacroBar<T:FoodItem>: View {
+    let foodItem: T
+    
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Macro.protein.color)
+                .fill(Macro.carbs.color)
                 .frame(height: 10)
-                .scaleEffect(x: meal.percentProtein, anchor: .leading)
             Rectangle()
                 .fill(Macro.fat.color)
                 .frame(height: 10)
-                .scaleEffect(x: meal.percentFat, anchor: .leading)
-                .offset(x: size.width * meal.percentProtein)
+                .scaleEffect(x: foodItem.percentFat + foodItem.percentProtein, anchor: .leading)
             Rectangle()
-                .fill(Macro.carbs.color)
+                .fill(Macro.protein.color)
                 .frame(height: 10)
-                .scaleEffect(x: meal.percentCarbs, anchor: .leading)
-                .offset(x: size.width * (meal.percentProtein + meal.percentFat))
+                .scaleEffect(x: foodItem.percentProtein, anchor: .leading)
         }
-        .saveSize(in: $size)
+        .clipShape(Capsule())
     }
 }
 
 #Preview {
-    MealMacros(meal: Meal.standard)
+    FoodItemMacros(foodItem: Meal.standard)
         .environment(FoodManager())
 }

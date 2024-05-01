@@ -17,6 +17,8 @@ class IngredientTemplate: FoodItem {
     var fatPerServing: Double
     var carbsPerServing: Double
     
+    var id: UUID = UUID()
+
     init(name: String, servingSize: Double, caloriesPerServing: Double, proteinPerServing: Double, fatPerServing: Double, carbsPerServing: Double) {
         self.name = name
         self.servingSize = servingSize
@@ -28,6 +30,16 @@ class IngredientTemplate: FoodItem {
 }
 
 extension IngredientTemplate {
+    convenience init() {
+        self.init(name: "", servingSize: 0, caloriesPerServing: 0, proteinPerServing: 0, fatPerServing: 0, carbsPerServing: 0)
+    }
+}
+
+extension IngredientTemplate {
+    var portionSize: Double {
+        servingSize
+    }
+    
     var totalCalories: Double {
         caloriesPerServing
     }
@@ -45,20 +57,33 @@ extension IngredientTemplate {
     }
     
     var percentProtein: Double {
-        (totalProtein * 4) / totalCalories
+        (totalProtein * 4) / expectedCaloriesPerServing
     }
     
     var percentFat: Double {
-        (totalFat * 9) / totalCalories
+        (totalFat * 9) / expectedCaloriesPerServing
     }
     
     var percentCarbs: Double {
-        (totalCarbs * 4) / totalCalories
+        (totalCarbs * 4) / expectedCaloriesPerServing
+    }
+    
+    var expectedCaloriesPerServing: Double {
+        (proteinPerServing * 4) + (fatPerServing * 9) + (carbsPerServing * 4)
     }
 }
 
 extension IngredientTemplate {
-    var expectedCaloriesPerServing: Double {
-        (proteinPerServing * 4) + (fatPerServing * 9) + (carbsPerServing * 4)
+    func clear() {
+        self.name = ""
+        self.servingSize = 0
+        self.caloriesPerServing = 0
+        self.proteinPerServing = 0
+        self.fatPerServing = 0
+        self.carbsPerServing = 0
     }
+}
+
+extension IngredientTemplate {
+    static let standard = IngredientTemplate(name: "Standard", servingSize: 20, caloriesPerServing: 105, proteinPerServing: 5, fatPerServing: 5, carbsPerServing: 10)
 }

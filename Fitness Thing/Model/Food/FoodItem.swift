@@ -7,8 +7,9 @@
 
 import Foundation
 
-protocol FoodItem {
+protocol FoodItem: Identifiable {
     var name: String { get }
+    var portionSize: Double { get }
     var totalCalories: Double { get }
     var totalProtein: Double { get }
     var totalFat: Double { get }
@@ -16,4 +17,5 @@ protocol FoodItem {
     var percentProtein: Double { get }
     var percentFat: Double { get }
     var percentCarbs: Double { get }
+    var id: UUID { get }
 }

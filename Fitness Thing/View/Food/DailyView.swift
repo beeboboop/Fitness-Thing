@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct DailyFoodView: View {
+struct DailyView: View {
     @Environment(\.modelContext) var context
     
     @State private var selectedDate: Date = Date()
@@ -32,15 +32,12 @@ struct DailyFoodView: View {
                 DateView(selectedDate: $selectedDate)
                 Spacer()
                 PlusButton(action: {isAdding = true})
-                    .frame(width: 32, height: 32)
                     .padding(.trailing)
             }
             
             if let day = foodDay {
-                DailyOverviewView(foodDay: day)
-                ScrollView(.vertical) {
-                    MealsEatenView(mealsEaten: day.mealsEaten)
-                }
+                DailyOverview(foodDay: day)
+                FoodItemList(foodItems: day.mealsEaten, isEditable: true)
             }
         }
         .onAppear() {
@@ -54,13 +51,13 @@ struct DailyFoodView: View {
             }
         }
         .sheet(isPresented: $isAdding) {
-            AddItemSheet()
+            AllTemplatesSheet()
         }
     }
 }
 
 #Preview {
-    DailyFoodView()
+    DailyView()
         .environment(FoodManager())
         .modelContainer(for: [FoodDay.self, MealTemplate.self, IngredientTemplate.self], inMemory: true)
 }

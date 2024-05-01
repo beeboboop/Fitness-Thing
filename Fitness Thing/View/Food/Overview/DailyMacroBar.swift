@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MacroBarView: View {
+struct DailyMacroBar: View {
     @Environment(FoodManager.self) var foodManager
     
     let macro : Macro
@@ -32,7 +32,7 @@ struct MacroBarView: View {
     }
 }
 
-extension MacroBarView {
+extension DailyMacroBar {
     var percentOfTarget : Double {
         let percent = current/target
         return percent > 1 ? 1 : percent
@@ -40,6 +40,6 @@ extension MacroBarView {
 }
 
 #Preview {
-    MacroBarView(macro: .carbs, target: 200, current: 100)
+    DailyMacroBar(macro: .carbs, target: 200, current: 100)
         .environment(FoodManager())
 }

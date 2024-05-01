@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct DailyOverviewView: View {
+struct DailyOverview: View {
     let foodDay: FoodDay
     var body: some View {
         HStack{
-            CalorieCircleView(foodDay: foodDay)
+            CalorieCircle(foodDay: foodDay)
                 .padding()
             VStack {
-                MacroBarView(macro: .protein,
+                DailyMacroBar(macro: .protein,
                              target: foodDay.targetProtein,
                              current: foodDay.totalProtein)
-                MacroBarView(macro: .fat,
+                DailyMacroBar(macro: .fat,
                              target: foodDay.targetFat,
                              current: foodDay.totalFat)
-                MacroBarView(macro: .carbs,
+                DailyMacroBar(macro: .carbs,
                              target: foodDay.targetCarbs,
                              current: foodDay.totalCarbs)
             }
@@ -30,6 +30,6 @@ struct DailyOverviewView: View {
 }
 
 #Preview {
-    DailyOverviewView(foodDay: FoodDay.standard)
+    DailyOverview(foodDay: FoodDay.standard)
         .environment(FoodManager())
 }

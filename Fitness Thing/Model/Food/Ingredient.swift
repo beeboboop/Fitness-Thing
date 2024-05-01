@@ -23,10 +23,10 @@ extension Ingredient {
     init(template: IngredientTemplate) {
         name = template.name
         servingSize = template.servingSize
-        caloriesPerServing = template.servingSize
+        caloriesPerServing = template.caloriesPerServing
         proteinPerServing = template.proteinPerServing
         fatPerServing = template.fatPerServing
-        carbsPerServing = template.fatPerServing
+        carbsPerServing = template.carbsPerServing
         
         portionSize = template.servingSize
     }

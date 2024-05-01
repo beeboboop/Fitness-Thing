@@ -14,10 +14,18 @@ class MealTemplate: FoodItem {
     var servingSize: Double
     var ingredients: [Ingredient]
     
+    var id: UUID = UUID()
+
     init(name: String, servingSize: Double, ingredients: [Ingredient]) {
         self.name = name
         self.servingSize = servingSize
         self.ingredients = ingredients
+    }
+}
+
+extension MealTemplate {
+    convenience init() {
+        self.init(name: "", servingSize: 0, ingredients: [])
     }
 }
 
@@ -48,6 +56,10 @@ extension MealTemplate {
 }
 
 extension MealTemplate {
+    var portionSize: Double {
+        servingSize
+    }
+    
     var totalCalories: Double {
         caloriesPerServing
     }
@@ -74,6 +86,14 @@ extension MealTemplate {
     
     var percentCarbs: Double {
         (totalCarbs * 4) / totalCalories
+    }
+}
+
+extension MealTemplate {
+    func clear() {
+        self.name = ""
+        self.servingSize = 0
+        self.ingredients = []
     }
 }
 

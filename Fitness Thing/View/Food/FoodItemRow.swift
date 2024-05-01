@@ -7,38 +7,48 @@
 
 import SwiftUI
 
-struct FoodItemRow: View {
+struct FoodItemRow<T:FoodItem>: View {
     @Environment(FoodManager.self) var foodManager
-    let meal: Meal
+    let foodItem: T
+    var showName: Bool = true
     
     var percentDaily: Double {
-        meal.totalCalories/DebugConstants.targetCal
+        foodItem.totalCalories/DebugConstants.targetCal
     }
-    var text1: String {
-        foodManager.formatMacro(meal.portionSize) + " g"
-    }
-    var text2: String {
-        foodManager.formatMacro(meal.totalCalories) + " cal" + "\n" + foodManager.formatPercent(percentDaily) + " dv"
+    
+    var portionString: String {
+        if let foodItem = foodItem as? MealTemplate {
+            return "Per " + foodManager.formatMacro(foodItem.portionSize) + " g"
+        }
+        else if let foodItem = foodItem as? IngredientTemplate {
+            return "Per " + foodManager.formatMacro(foodItem.portionSize) + " g"
+        }
+        else {
+            return foodManager.formatMacro(foodItem.portionSize) + " g"
+        }
     }
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(meal.name)
-                    .font(.title3)
-                Text(text1 + "\n" + text2)
-//                Text(foodManager.formatMacro(meal.totalCalories) + " cal")
-//                Text(foodManager.formatPercent(percentDaily) + " dv")
+                if showName == true {
+                    Text(foodItem.name)
+                        .font(.body)
+                }
+                Text(portionString)
+                Text(foodManager.formatMacro(foodItem.totalCalories) + " cal")
+                Text(foodManager.formatPercent(percentDaily) + " dv")
             }
-            .font(.caption)
+            .font(showName ? .caption : .subheadline)
             Spacer()
-            MealMacros(meal: meal)
+            FoodItemMacros(foodItem: foodItem)
+                .frame(width: 200)
         }
         .padding()
     }
 }
 
 #Preview {
-    FoodItemRow(meal: Meal.standard)
+    FoodItemRow(foodItem: MealTemplate.standard, showName: true)
         .environment(FoodManager())
 }

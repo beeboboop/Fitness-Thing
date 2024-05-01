@@ -10,10 +10,12 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var context
+    
+    @State private var test = MealTemplate.standard
 
     var body: some View {
         TabView {
-            DailyFoodView()
+            DailyView()
                 .tabItem {
                     Label("Food", systemImage: "fork.knife")
                 }
