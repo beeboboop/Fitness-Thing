@@ -11,6 +11,7 @@ struct FoodItemList<T:FoodItem>: View {
     var foodItems: [T]
     var containingMeal: MealTemplate?
     var isEditable: Bool
+    var removeAction: (T) -> Void
     
     @State private var selectedItems: [T] = []
     
@@ -39,6 +40,6 @@ struct FoodItemList<T:FoodItem>: View {
 }
 
 #Preview {
-    FoodItemList(foodItems: [Ingredient.standard, Ingredient.standard, Ingredient.standard], isEditable: false)
+    FoodItemList(foodItems: [Ingredient.standard, Ingredient.standard, Ingredient.standard], isEditable: false, removeAction: {_ in })
         .environment(FoodManager())
 }

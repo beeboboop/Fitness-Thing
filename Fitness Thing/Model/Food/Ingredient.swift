@@ -51,16 +51,20 @@ extension Ingredient {
 }
 
 extension Ingredient {
+    var macrosPerServing: Double {
+        proteinPerServing + carbsPerServing + fatPerServing
+    }
+    
     var percentProtein: Double {
-        (totalProtein * 4) / totalCalories
+        proteinPerServing / macrosPerServing
     }
     
     var percentFat: Double {
-        (totalFat * 9) / totalCalories
+        fatPerServing / macrosPerServing
     }
     
     var percentCarbs: Double {
-        (totalCarbs * 4) / totalCalories
+        carbsPerServing / macrosPerServing
     }
 }
 
